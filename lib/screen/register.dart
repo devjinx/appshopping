@@ -1,9 +1,12 @@
+import 'package:fastsell/model/profile.dart';
 import 'package:fastsell/screen/home.dart';
 import 'package:fastsell/screen/login.dart';
-import 'package:fastsell/screen/Register.dart';
+import 'package:fastsell/model/profile.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
+  Profile profile = Profile();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,15 +43,16 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-            decoration: InputDecoration(
-                hintText: "Email",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide.none),
-                fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-                filled: true,
-                prefixIcon: Icon(Icons.email)),
-            keyboardType: TextInputType.emailAddress),
+          decoration: InputDecoration(
+              hintText: "Email",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  borderSide: BorderSide.none),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
+              prefixIcon: Icon(Icons.email)),
+          keyboardType: TextInputType.emailAddress,
+        ),
         SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
