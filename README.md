@@ -1,4 +1,4 @@
-# fastsell
+# ShoppingApp
 
 A new Flutter project.
 
