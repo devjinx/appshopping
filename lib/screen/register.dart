@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
+        TextFormField(
           decoration: InputDecoration(
               hintText: "Email",
               border: OutlineInputBorder(
@@ -56,13 +56,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               filled: true,
               prefixIcon: Icon(Icons.email)),
           keyboardType: TextInputType.emailAddress,
-          onSubmitted: (String? email) {
+          onSaved: (String? email) {
             formKey.currentState?.save();
             profile.email = email!;
           },
         ),
         SizedBox(height: 10),
-        TextField(
+        TextFormField(
           decoration: InputDecoration(
               hintText: "Username",
               border: OutlineInputBorder(
@@ -71,13 +71,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
-          onSubmitted: (String? username) {
+          onSaved: (String? username) {
             formKey.currentState?.save();
             profile.username = username!;
           },
         ),
         SizedBox(height: 10),
-        TextField(
+        TextFormField(
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -88,8 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             prefixIcon: Icon(Icons.password),
           ),
           obscureText: true,
-          onSubmitted: (String? password) {
-            formKey.currentState?.save();
+          onSaved: (String? password) {
             profile.password = password!;
           },
         ),
