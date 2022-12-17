@@ -1,15 +1,20 @@
 import 'package:fastsell/model/profile.dart';
 import 'package:fastsell/screen/home.dart';
 import 'package:fastsell/screen/login.dart';
-import 'package:fastsell/model/profile.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final formKey = GlobalKey<FormState>();
   Profile profile = Profile();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Form(
       child: Scaffold(
         body: Container(
           margin: EdgeInsets.all(24),
@@ -19,7 +24,6 @@ class RegisterScreen extends StatelessWidget {
               _header(context),
               _inputField(context),
               _forgotPassword(context),
-              _signup(context),
             ],
           ),
         ),
@@ -52,6 +56,10 @@ class RegisterScreen extends StatelessWidget {
               filled: true,
               prefixIcon: Icon(Icons.email)),
           keyboardType: TextInputType.emailAddress,
+          onSubmitted: (String? email) {
+            formKey.currentState?.save();
+            profile.email = email!;
+          },
         ),
         SizedBox(height: 10),
         TextField(
@@ -63,6 +71,10 @@ class RegisterScreen extends StatelessWidget {
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
+          onSubmitted: (String? username) {
+            formKey.currentState?.save();
+            profile.username = username!;
+          },
         ),
         SizedBox(height: 10),
         TextField(
@@ -76,10 +88,17 @@ class RegisterScreen extends StatelessWidget {
             prefixIcon: Icon(Icons.password),
           ),
           obscureText: true,
+          onSubmitted: (String? password) {
+            formKey.currentState?.save();
+            profile.password = password!;
+          },
         ),
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
+            formKey.currentState?.save(); // Save the entire form
+            print(
+                "email =${profile.email} username =${profile.username} password =${profile.password}");
             Navigator.push(context, MaterialPageRoute(builder: ((context) {
               return LoginScreen();
             })));
