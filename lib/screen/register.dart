@@ -15,6 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
       child: Scaffold(
         body: Container(
           margin: EdgeInsets.all(24),
@@ -57,7 +58,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               prefixIcon: Icon(Icons.email)),
           keyboardType: TextInputType.emailAddress,
           onSaved: (String? email) {
-            formKey.currentState?.save();
             profile.email = email!;
           },
         ),
@@ -72,7 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               filled: true,
               prefixIcon: Icon(Icons.person)),
           onSaved: (String? username) {
-            formKey.currentState?.save();
             profile.username = username!;
           },
         ),
