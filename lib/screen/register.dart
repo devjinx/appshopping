@@ -2,6 +2,7 @@ import 'package:fastsell/model/profile.dart';
 import 'package:fastsell/screen/home.dart';
 import 'package:fastsell/screen/login.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -48,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFormField(
+          validator: RequiredValidator(errorText: "Please input email"),
           decoration: InputDecoration(
               hintText: "Email",
               border: OutlineInputBorder(
@@ -63,6 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         SizedBox(height: 10),
         TextFormField(
+          validator: RequiredValidator(errorText: "Please input username"),
           decoration: InputDecoration(
               hintText: "Username",
               border: OutlineInputBorder(
@@ -77,6 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         SizedBox(height: 10),
         TextFormField(
+          validator: RequiredValidator(errorText: "Please input password"),
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -94,9 +98,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
-            formKey.currentState?.save(); // Save the entire form
-            print(
-                "email =${profile.email} username =${profile.username} password =${profile.password}");
+            if (formKey.currentState!.validate()) {
+              formKey.currentState?.save();
+              print(
+                  "email =${profile.email} username =${profile.username} password =${profile.password}");
+              formKey.currentState?.reset();
+            }
             Navigator.push(context, MaterialPageRoute(builder: ((context) {
               return LoginScreen();
             })));
