@@ -1,3 +1,6 @@
+import 'package:fastsell/screen/home.dart';
+import 'package:fastsell/screen/login.dart';
+import 'package:fastsell/model/profile.dart';
 import 'package:flutter/material.dart';
 
 class Resetpw extends StatefulWidget {

@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
+        TextFormField(
           decoration: InputDecoration(
               hintText: "Username",
               border: OutlineInputBorder(
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
               prefixIcon: Icon(Icons.person)),
         ),
         SizedBox(height: 10),
-        TextField(
+        TextFormField(
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(

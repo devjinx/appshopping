@@ -49,7 +49,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFormField(
-          validator: RequiredValidator(errorText: "Please input email"),
+          validator: MultiValidator([
+            RequiredValidator(errorText: "Please enter your email address"),
+            EmailValidator(errorText: "Please enter a valid email address"),
+          ]),
           decoration: InputDecoration(
               hintText: "Email",
               border: OutlineInputBorder(
@@ -100,13 +103,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           onPressed: () {
             if (formKey.currentState!.validate()) {
               formKey.currentState?.save();
-              print(
-                  "email =${profile.email} username =${profile.username} password =${profile.password}");
               formKey.currentState?.reset();
+              Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                return LoginScreen();
+              })));
             }
-            Navigator.push(context, MaterialPageRoute(builder: ((context) {
-              return LoginScreen();
-            })));
           },
           child: Text(
             "Register",
